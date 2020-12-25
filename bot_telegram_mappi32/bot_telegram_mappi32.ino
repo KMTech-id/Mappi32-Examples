@@ -67,7 +67,7 @@ void loop() {
 
     //variabel penampung isi pesan
     String pesan = msg.text;
-    if(pesan == "assalamu'alaikum")
+    if(pesan == "wind speed")
     {
       Serial.print("masuk");
       mybot.sendMessage(id,LoRaData);
