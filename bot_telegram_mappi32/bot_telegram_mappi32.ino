@@ -60,11 +60,7 @@ void loop() {
       String LoRaData = LoRa.readString();
       Serial.print(LoRaData); Serial.print("\t"); 
     
-    while(!mybot.getNewMessage(msg)) // membaca pesan masuk telegram
-  {
-    Serial.println(". ");
-    delay(1000);
-  }
+    if(mybot.getNewMessage(msg)) // membaca pesan masuk telegram
 
     //tampilkan di serial monitor
     Serial.println("pesan Masuk : " + msg.text);
