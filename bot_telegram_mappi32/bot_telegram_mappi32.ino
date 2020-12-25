@@ -48,11 +48,24 @@ void setup() {
   }
 
 void loop() {
-  TBMessage msg ;    
-  while (LoRa.available())
-    {
-  if(mybot.getNewMessage(msg)) // membaca pesan masuk telegram
+  TBMessage msg ;  
+  int packetSize = LoRa.parsePacket();
+  if (packetSize) {
+    // received a packet
+//    Serial.print("No: '");
+//    Serial.print("\t");
+
+    // read packet
+    while (LoRa.available()) {
+      String LoRaData = LoRa.readString();
+      Serial.print(LoRaData); Serial.print("\t"); 
+    
+    while(!mybot.getNewMessage(msg)) // membaca pesan masuk telegram
   {
+    Serial.println(". ");
+    delay(1000);
+  }
+
     //tampilkan di serial monitor
     Serial.println("pesan Masuk : " + msg.text);
 
@@ -61,20 +74,10 @@ void loop() {
     if(pesan == "assalamu'alaikum..")
     {
       Serial.print("masuk");
-
-  
-    // received a packet
-//    Serial.print("No: '");
-//    Serial.print("\t");
-
-    // read packet
-//data masuk 
-      String LoRaData = LoRa.readString();
-      Serial.print(LoRaData); Serial.print("\t"); 
       mybot.sendMessage(id,LoRaData);
     }
     
       
     }
-  }
+    }
 }
