@@ -1,5 +1,5 @@
 # Membaca DHT11 atau DHT22 sensor menggunakan Mappi32 
-
+ef
 ## Deskripsi
 Sketch arduino ini dapat digunakan untuk membaca sensor DHT11 maupun DHT22
 
