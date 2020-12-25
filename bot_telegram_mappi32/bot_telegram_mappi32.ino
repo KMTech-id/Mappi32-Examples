@@ -1,9 +1,9 @@
 #include <CTBot.h>
 CTBot mybot;
-String ssid = "ssid";
-String pass= "986pswdr";
-String token = "1449400680:AAHQo0JhIs_O8rnaedfV2SqykVHgVyPVixA";
-const int id = 1386224063;
+String ssid = "nama ssid";
+String pass= "password";
+String token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";//isi dengan token API telegram bot kalian
+const int id = xxxxxxxx;//isi dengan id telegram kalian
 
 #include <math.h>
 #include <SPI.h>
@@ -67,7 +67,7 @@ void loop() {
 
     //variabel penampung isi pesan
     String pesan = msg.text;
-    if(pesan == "assalamu'alaikum..")
+    if(pesan == "assalamu'alaikum")
     {
       Serial.print("masuk");
       mybot.sendMessage(id,LoRaData);
