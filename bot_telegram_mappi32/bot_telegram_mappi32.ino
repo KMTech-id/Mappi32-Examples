@@ -34,13 +34,14 @@ void setup() {
   //433E6 for Asia
   //866E6 for Europe
   //915E6 for North America
-  while (!LoRa.begin(921E6)) {
+  while (!LoRa.begin(921E6))//melakukan perulangan sampai Lora terkoneksi 
+  {
     Serial.println(".");
     delay(500);
   }
    // Change sync word (0xF3) to match the receiver
-  // The sync word assures you don't get LoRa messages from other LoRa transceivers
-  // ranges from 0-0xFF
+   // The sync word assures you don't get LoRa messages from other LoRa transceivers
+   // ranges from 0-0xFF
   LoRa.setSyncWord(0xF3);
   Serial.println("LoRa Initializing OK!");
 
@@ -48,6 +49,8 @@ void setup() {
   }
 
 void loop() {
+  int windspeed;
+  String Status;
   TBMessage msg ;  
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
@@ -58,7 +61,17 @@ void loop() {
     // read packet
     while (LoRa.available()) {
       String LoRaData = LoRa.readString();
-      Serial.print(LoRaData); Serial.print("\t"); 
+      windspeed = LoRaData.toInt();
+      if(windspeed <= 45)
+      {
+        Status = "aman";
+        Serial.print(Status);
+      }
+      else
+      {
+        Status = "Berbahaya,angin kencang";
+        Serial.print(Status);
+      }
     
     if(mybot.getNewMessage(msg)) // membaca pesan masuk telegram
 
@@ -70,10 +83,8 @@ void loop() {
     if(pesan == "wind speed")
     {
       Serial.print("masuk");
-      mybot.sendMessage(id,LoRaData);
-    }
-    
-      
+      mybot.sendMessage(id,Status);
+    }  
     }
     }
 }
