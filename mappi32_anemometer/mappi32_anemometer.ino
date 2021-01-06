@@ -1,6 +1,3 @@
-//More Information at: https://www.aeq-web.com/
-//Version 2.0 | 11-NOV-2020
-
 const int RecordTime = 3; //Define Measuring Time (Seconds)
 const int SensorPin = 23;  //Define Interrupt Pin (GPIO23 @Mappi32)
 
