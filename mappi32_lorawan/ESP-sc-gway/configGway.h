@@ -116,7 +116,7 @@
 // the webserver and it will be stored in SPIFF
 // NOTE: The frequency is set in the loraModem.h file and is default 868100000 Hz.
 #if !defined _SPREADING
-#	define _SPREADING SF9
+#	define _SPREADING SF7
 #endif
 
 // Channel Activity Detection
@@ -361,5 +361,6 @@
 // use the backend function to send message to server over MQTT.
 #if _REPEATER==0
 #	define _TTNSERVER "router.as1.thethings.network"
+//# define _TTNSERVER "eu1.cloud.thethings.network"
 #	define _TTNPORT 1700							// Standard port for TTN
 #endif
