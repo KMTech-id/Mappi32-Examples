@@ -136,8 +136,8 @@ wpas wpa[] = {
 #define _DESCRIPTION "ESP32 Gateway"			// Name of the gateway
 #define _EMAIL "rinodc13@gmail.com"		// Owner
 #define _PLATFORM "ESP32"
-#define _LAT -7.79070
-#define _LON 110.2689
+#define _LAT 0
+#define _LON 0
 #define _ALT 80							// Altitude
 
 
