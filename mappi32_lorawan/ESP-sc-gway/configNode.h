@@ -49,7 +49,7 @@ struct nodex {
 
 // Add all your named and trusted nodes to this list
 nodex nodes[] = {
-	{ 0x26041926 , "Mappi32" },						// F=0
+	{ 0x26041177 , "Mappi32" },						// F=0
 	{ 0x26011152 , "lora-35 temp+humi node" },					// F=0
 	{ 0x2601148C , "lora-36 test node"  },						// F=0
 };
