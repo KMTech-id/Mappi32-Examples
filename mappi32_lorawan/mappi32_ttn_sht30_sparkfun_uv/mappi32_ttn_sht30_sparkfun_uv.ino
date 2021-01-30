@@ -1,19 +1,10 @@
 #include <lmic.h>
 #include <hal/hal.h>
 #include <SPI.h>
-#include <WiFi.h>
 
-//static const PROGMEM u1_t NWKSKEY[16] = { 0x56, 0x68, 0xCC, 0xB0, 0x15, 0x00, 0xC9, 0x7C, 0x6E, 0xB1, 0x83, 0x98, 0xF6, 0xE9, 0xD8, 0x08 };
-//static const u1_t PROGMEM APPSKEY[16] = { 0x81, 0x3E, 0xF0, 0x64, 0x84, 0x3C, 0x02, 0xE9, 0x10, 0x04, 0xAD, 0x6E, 0x53, 0x80, 0xB3, 0xF4 };
-//static const u4_t DEVADDR = 0x26041926 ; // <-- Change this address for every node!
-
-//static const PROGMEM u1_t NWKSKEY[16] = {0x82, 0xA5, 0x50, 0xB5, 0xF9, 0x18, 0x9B, 0x71, 0xCF, 0x72, 0xF5, 0x2A, 0x8C, 0x74, 0x77, 0xC1};
-//static const u1_t PROGMEM APPSKEY[16] = {0x30, 0x53, 0x58, 0xD4, 0x6C, 0x70, 0xC8, 0xBE, 0xCE, 0x64, 0x33, 0x5F, 0xF4, 0xA4, 0xAB, 0x50};
-//static const u4_t DEVADDR = 0x260B882E ; // <-- Change this address for every node!
-
-static const PROGMEM u1_t NWKSKEY[16] = { 0xCE, 0xBD, 0x0E, 0x7A, 0xB5, 0x35, 0x1D, 0xA0, 0xF7, 0x11, 0xE5, 0x02, 0xA5, 0x42, 0x68, 0x65 };
-static const u1_t PROGMEM APPSKEY[16] = { 0xEC, 0x74, 0x60, 0xD0, 0xEB, 0xBE, 0x18, 0x59, 0xF3, 0x2A, 0x2B, 0x6E, 0x14, 0x06, 0xB2, 0x45 };
-static const u4_t DEVADDR = 0x2604143F ; // <-- Change this address for every node!
+static const PROGMEM u1_t NWKSKEY[16] = { 0x56, 0x68, 0xCC, 0xB0, 0x15, 0x00, 0xC9, 0x7C, 0x6E, 0xB1, 0x83, 0x98, 0xF6, 0xE9, 0xD8, 0x08 };
+static const u1_t PROGMEM APPSKEY[16] = { 0x81, 0x3E, 0xF0, 0x64, 0x84, 0x3C, 0x02, 0xE9, 0x10, 0x04, 0xAD, 0x6E, 0x53, 0x80, 0xB3, 0xF4 };
+static const u4_t DEVADDR = 0x26041926 ; // <-- Change this address for every node!
 
 void os_getArtEui (u1_t* buf) { }
 void os_getDevEui (u1_t* buf) { }
@@ -156,7 +147,6 @@ void setup() {
       ;
   }
 
-  Serial.println(WiFi.macAddress());
 
   SPI.begin(14, 12, 13, 15);
 
@@ -171,7 +161,6 @@ void setup() {
   os_init();
   // Reset the MAC state. Session and pending data transfers will be discarded.
   LMIC_reset();
-
   // Set static session parameters. Instead of dynamically establishing a session
   // by joining the network, precomputed session parameters are be provided.
 #ifdef PROGMEM
@@ -189,6 +178,7 @@ void setup() {
 #endif
 
 #if defined(CFG_eu868)
+
   LMIC_setupChannel(0, 921000000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
   LMIC_setupChannel(1, 921000000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
   LMIC_setupChannel(2, 921000000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
@@ -198,14 +188,6 @@ void setup() {
   LMIC_setupChannel(6, 921000000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
   LMIC_setupChannel(7, 921000000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
 
-  //  LMIC_setupChannel(0, 920100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(1, 920300000, DR_RANGE_MAP(DR_SF12, DR_SF7B), BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(2, 920500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(3, 920700000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(4, 920900000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(5, 921100000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(6, 921300000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
-  //  LMIC_setupChannel(7, 921500000, DR_RANGE_MAP(DR_SF12, DR_SF7),  BAND_CENTI);      // g-band
 #elif defined(CFG_us915)
   LMIC_selectSubBand(1);
 #endif
