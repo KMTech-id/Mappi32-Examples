@@ -22,6 +22,7 @@ void setup() {
   Serial.println("LoRa Receiver");
 
   //setup LoRa transceiver module
+  SPI.begin(14, 12, 13, 15);
   LoRa.setPins(ss, rst, dio0);
   
   //replace the LoRa.begin(---E-) argument with your location's frequency 
