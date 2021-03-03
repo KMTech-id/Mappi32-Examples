@@ -9,9 +9,9 @@
 #include <LoRa.h>
 
 //define the pins used by the transceiver module
-#define ss 15
-#define rst 0
-#define dio0 27
+#define ss 10
+#define rst 4
+#define dio0 7
 
 int counter = 0;
 
@@ -23,7 +23,7 @@ void setup() {
   Serial.println("LoRa Sender");
 
   //setup LoRa transceiver module
-  SPI.begin(14, 12, 13, 15);
+//  SPI.begin(14, 12, 13, 15);
   LoRa.setPins(ss, rst, dio0);
   
   //replace the LoRa.begin(---E-) argument with your location's frequency 
