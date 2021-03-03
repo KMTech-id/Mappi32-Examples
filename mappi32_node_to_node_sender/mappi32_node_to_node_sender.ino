@@ -9,9 +9,9 @@
 #include <LoRa.h>
 
 //define the pins used by the transceiver module
-#define ss 10
-#define rst 4
-#define dio0 7
+#define ss 15
+#define rst 0
+#define dio0 27
 
 int counter = 0;
 
