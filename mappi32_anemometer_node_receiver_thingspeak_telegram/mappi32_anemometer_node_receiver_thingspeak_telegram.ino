@@ -37,7 +37,7 @@ String windspeedStr;
 String rssiStr;
 
 void setup() {
-  Serial.begin(115200); 
+  Serial.begin(115200);
   Serial.println("Memulai telegram bot. koneksi ke wifi");
 
   // WiFi.mode(WIFI_STA);
@@ -77,9 +77,56 @@ void loop() {
       String LoRaData = LoRa.readString();
       windspeed = LoRaData.toInt();
       windspeedStr = String(windspeed);
-      TestConTelegram();
-      sendTelegram();
+
+      /test connection telegram
+      if (mybot.testConnection())
+        Serial.println("------------------------------\nTest koneksi Telegram berhasil\n");
+      else
+        Serial.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx\nTest koneksi Telegram gagal :(\nxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        
+      /Status
+      if (windspeed > BATAS_MAX )
+      {
+        Status = "BAHAYA ANGIN KENCANG\r\n";
+        Serial.print("Windspeed = " + windspeedStr + "\tStatus = " + Status);
+      }
+      if (windspeed < BATAS_MAX )
+      {
+        Status = "Aman\r\n";
+        Serial.print("Windspeed = " + windspeedStr + "\tStatus = " + Status);
+        Start = 0;
+      }
       
+      /message
+      if (mybot.getNewMessage(msg)) {
+        Serial.println("Masuk : " + msg.text);
+        String Pesan = msg.text;
+
+        if (Pesan == isipesan && Start == 0)
+        {
+          mybot.sendMessage(id, Status + windspeedStr + " km/h");
+          Serial.println("Terkirim ke telegram");
+        }
+        if ( Pesan == isipesan && windspeed > BATAS_MAX )
+        {
+          mybot.sendMessage(id, Status + windspeedStr + " km/h");
+          Serial.println("Terkirim ke telegram");
+        }
+      }
+
+      if (windspeed > BATAS_MAX  && Start == 0)
+      {
+
+        mybot.sendMessage(id, Status + windspeedStr + " km/h");
+        Serial.print("Peringatan Terkirim ke telegram\n");
+        Start = 1;
+      }
+
+      else if (windspeed < BATAS_MAX)
+      {
+        Start = 0;
+      }
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       Serial.print("RSSI: ");
       rssiStr = LoRa.packetRssi();
       Serial.print(rssiStr);
