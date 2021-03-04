@@ -1,21 +1,14 @@
+//Mappi32 by KMTek
+// Yogyakarta - Indonesia
+
+
 //include telegram ct bot
 #include <WiFi.h>
 #include "CTBot.h"
-
 CTBot myBot;
 TBMessage msg ;
 #define TOKEN_TELEGRAM "XXXXXXXXXX:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //token from telegram (botFather)
 const int id = xxxxxxxxxx; // Id telegram (idBot)
-
-
-//define sensor
-#define BATAS_MAX 22 //maximum speed to send warning to telegram (km/h)
-String isipesan = "Wind speed"; //message from telegram for view the wind speed
-String Status;
-boolean Start;
-int windspeed;
-String windspeedStr;
-String rssiStr;
 
 //include mqtt ubidots
 #include <PubSubClient.h>
@@ -23,12 +16,20 @@ String rssiStr;
 #define WIFISSID "SSID" // Nama Hotspot / WiFi
 #define PASSWORD "PASSWORD" // Password WiFi
 #define TOKEN "XXXX-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"   // Ubidots TOKEN
-#define MQTT_CLIENT_NAME "anemometer" //mqtt client name
+#define MQTT_CLIENT_NAME "xyz" //mqtt client name / Device name/ custom
+#define DEVICE_LABEL "XYZ" // Api Label / Device Label in Ubidots
 
 #define VARIABLE_LABEL_1 "rssi" // Nama Variabel 1
 #define VARIABLE_LABEL_2 "windspeed" // Nama Variabel 2
-#define DEVICE_LABEL "anemometer" // Device Label
 
+//define receiver sensor
+#define BATAS_MAX 22 //maximum speed to send warning to telegram (km/h)
+String isipesan = "Wind speed"; //message from telegram for view the wind speed
+String Status;
+boolean Start;
+int windspeed;
+String windspeedStr;
+String rssiStr;
 char mqttBroker[]  = "industrial.api.ubidots.com";
 char payload[200];
 char topic[150];
