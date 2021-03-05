@@ -24,8 +24,8 @@ void setup()
   //setup LoRa transceiver module
   SPI.begin(14, 12, 13, 15);
   LoRa.setPins(ss, rst, dio0);
-  
-  //replace the LoRa.begin(---E-) argument with your location's frequency 
+
+  //replace the LoRa.begin(---E-) argument with your location's frequency
   //433E6 for Asia
   //866E6 for Europe
   //915E6 for North America
@@ -43,12 +43,12 @@ void loop() {
   Serial.print("Wind Speed: ");
   Serial.print(WindSpeed);       //Speed in km/h
   Serial.print(" km/h - ");
-  Serial.print(WindSpeed / 3.6); //Speed in m/s
-  Serial.println(" m/s");
+  //  Serial.print(WindSpeed / 3.6); //Speed in m/s
+  //  Serial.println(" m/s");
   LoRa.beginPacket();
   LoRa.print(WindSpeed);
   LoRa.endPacket();
-  Serial.print("Sent!");
+  //  Serial.print("Sent");
   delay(2000);
 }
 
