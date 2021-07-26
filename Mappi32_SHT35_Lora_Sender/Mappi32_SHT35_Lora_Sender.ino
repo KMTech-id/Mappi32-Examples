@@ -63,9 +63,10 @@ void loop()
   sht.read();         // default = true/fast       slow = false
   stop = micros();
   String temp = String(sht.getTemperature(), 1);
+  int tempInt = temp.toInt();
   //  String humi = String(sht.getHumidity(), 1);
 
-  Serial.print(temp);
+  Serial.print(tempInt);
   Serial.print("°C");
   Serial.print("\n");
   //  Serial.println(humi);
@@ -75,7 +76,7 @@ void loop()
 
   //send to node
   LoRa.beginPacket();
-  LoRa.print(temp);
+  LoRa.print(tempInt);
   //  LoRa.print(humi);
   LoRa.endPacket();
   digitalWrite(5, HIGH);
