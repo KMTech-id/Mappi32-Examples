@@ -52,7 +52,7 @@ void loop()
   sht.read();         // default = true/fast       slow = false
   stop = micros();
   temperature = String(sht.getTemperature(), 1);
-  tempInt = temp.toInt();
+  tempInt = temperature.toInt();
   Serial.print("Suhu Sekarang : ");
   Serial.print(tempInt);
   Serial.print("°C");
