@@ -11,9 +11,8 @@
 #define TXD2 17 //setting TX (penerima) di pin 17/IO17 pada mappi32 untuk komunikasi ke GSM Sield
 #define SIM Serial2 //membuat variabel SIM untuk Serial2
 
-#define api_keyNumber "9G7H780KFUCBU631" //memasukkan api key number dari dashboard thingspeak
-#define nilai "33" // masukkan nilai untuk dikirimkan ke thingspeak
-
+#define api_keyNumber "XXXXXXXXXXXXXXX" //memasukkan api key number dari dashboard thingspeak
+int nilai;
 int responSIM;
 int conLen = 0; // membuat interger conLen sebagai pengkalkulasian Conlen untuk dikirimkan ke dashboard thingspeak
 
@@ -31,6 +30,7 @@ void loop()
   SIM.println("AT");
   delay(1000);
   responSIM = int(SIM.read());
+  nilai = random(10, 15);
 
   if (responSIM < 1)
   {
