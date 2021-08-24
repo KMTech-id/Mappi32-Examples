@@ -6,11 +6,11 @@
 //include mqtt ubidots
 #include <PubSubClient.h>
 
-#define WIFISSID "Mertani SdyLab" // Nama Hotspot / WiFi
-#define PASSWORD "sdylap2019" // Password WiFi
-#define TOKEN "BBFF-OQAmcANqDnCZK4c2fY2qAsHRRMnZuZ"   // Ubidots TOKEN
-#define MQTT_CLIENT_NAME "suhu_terkini" //mqtt client name / Device name/ custom
-#define DEVICE_LABEL "suhu_terkini" // Api Label / Device Label in Ubidots
+#define WIFISSID "SSID" // Nama Hotspot / WiFi
+#define PASSWORD "PASSWORD" // Password WiFi
+#define TOKEN "XXXX-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"   // Ubidots TOKEN
+#define MQTT_CLIENT_NAME "xyz" //mqtt client name / Device name/ custom
+#define DEVICE_LABEL "XYZ" // Api Label / Device Label in Ubidots
 
 #define VARIABLE_LABEL_1 "suhu" // Nama Variabel 1
 #define VARIABLE_LABEL_2 "rssi" // Nama Variabel 2
