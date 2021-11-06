@@ -17,7 +17,7 @@ SHTSensor sht; // membuat variabel sht dari library SHT31
 // To use a specific sensor instead of probing the bus use this command:
 // SHTSensor sht(SHTSensor::SHT3X); //memasukkan library SHT3X
 
-#define api_keyNumber "RADVO089D1MQ34J0" //memasukkan api key number dari dashboard thingspeak
+#define api_keyNumber "xxxxxxxxxxxxxxxx" //memasukkan api key number dari dashboard thingspeak
 
 int conLen = 0; // membuat interger conLen sebagai pengkalkulasian Conlen untuk dikirimkan ke dashboard thingspeak
 String temperature; // membuat temperature sebagai String untuk menyimpan nilai suhu
