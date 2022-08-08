@@ -3,14 +3,14 @@ void lora_init()
   SPI.begin(14, 12, 13, 15);
   LoRa.setPins(ss, rst, dio0);
 
-  while (!LoRa.begin(FREQ)) {
+  while (!LoRa.begin(9224E5)) {
     Serial.println("LoRa Failed");
     delay(500);
   }
   // Change sync word (0xF3) to match the receiver
   // The sync word assures you don't get LoRa messages from other LoRa transceivers
   // ranges from 0-0xFF
-  LoRa.setSyncWord(0x01);
+  LoRa.setSyncWord(0xF1);
   Serial.println("LoRa Initializing OK! FREQ = " + String(FREQ));
 }
 

@@ -48,5 +48,5 @@ void loop() {
     LoRa.endPacket();
     counter++;
   
-  delay(1000);
+  delay(10000);
 }

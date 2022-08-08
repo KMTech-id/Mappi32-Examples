@@ -10,7 +10,7 @@ float tem_data = 0, hum_data = 0;
 #include <SPI.h>
 #include <LoRa.h>
 
-#define FREQ 922000000
+long FREQ = 9224E5;
 String unique_id = "F4022918";
 
 //define the pins used by the transceiver module
