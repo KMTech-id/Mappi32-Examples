@@ -1,3 +1,5 @@
+#include "arduino_secrets.h"
+
 //AHT10
 #include <Adafruit_AHTX0.h>
 
@@ -11,7 +13,7 @@ float tem_data = 0, hum_data = 0;
 #include <LoRa.h>
 
 long FREQ = 9224E5;
-String unique_id = "F4022918";
+String unique_id = SECRET_UNIQUE_ID;
 
 //define the pins used by the transceiver module
 #define ss 15
