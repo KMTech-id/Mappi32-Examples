@@ -5,7 +5,7 @@
 #include <SPI.h>
 #include <LoRa.h>
 
-#define FREQ 922000000
+long FREQ = 9224E5;
 String unique_id = "F4022918";
 String unique_id_come = "";
 
