@@ -32,8 +32,8 @@ char separator = '&';
 #include <WiFi.h>
 #include <HTTPClient.h>
 int status = WL_IDLE_STATUS;
-const char* ssid     = "SSID";
-const char* password = "SSIDPASSWORD";
+const char* ssid     = SECRET_SSID;
+const char* password = SECRET_SSIDPASSWORD;
 WiFiClient client;
 
 // dashboard
