@@ -3,7 +3,7 @@ void lora_init()
   SPI.begin(14, 12, 13, 15);
   LoRa.setPins(ss, rst, dio0);
 
-  while (!LoRa.begin(9224E5)) {
+  while (!LoRa.begin(FREQ)) {
     Serial.println("LoRa Failed");
     delay(500);
   }
