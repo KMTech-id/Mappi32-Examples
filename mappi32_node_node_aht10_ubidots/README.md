@@ -12,5 +12,5 @@ Fungsi code ini adalah untuk mengirimkan data sensor AHT10 (suhu dan kelembaban)
 * Install library **LoRa** dari **Sandeep Mistry**.
 * Install library **Adafruit_AHTX0** beserta kelengkapannya.
 * Rename **arduino_secrets.h.examples** menjadi **arduino_secrets.h**
-* Sesuaikan **SECRET_UNIQUE_ID**, **SECRET_SSID**, **SECRET_SSIDPASSWORD**, **SECRET_TOKEN** pada **arduino_secrets.h**
+* Sesuaikan **SECRET_UNIQUE_ID** (antara node 1 dan 2 harus sama), **SECRET_SSID**, **SECRET_SSIDPASSWORD**, **SECRET_TOKEN** pada **arduino_secrets.h**.
 * Frekuensi dapat disesuaikan dengan mengganti nilai variable **FREQ**.
