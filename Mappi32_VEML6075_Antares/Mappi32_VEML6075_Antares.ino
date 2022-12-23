@@ -1,17 +1,15 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
-//#include <ESP32WiFi.h>
-//#include "AntaresESP8266HTTP.h"
 #include <AntaresESP32HTTP.h>
 #include <SparkFun_VEML6075_Arduino_Library.h>
 
 VEML6075 uv;
 //API Key Antares
-#define ACCESSKEY "4ee20d7d3239b545:479738207f12da97"
+#define ACCESSKEY "XXXXXXXXXXXXXXXXXXXXX"
 
 //SSID dan Password WiFi
-#define WIFISSID "KMTek"
-#define PASSWORD "KMTek123"
+#define WIFISSID "XXXXX"
+#define PASSWORD "XXXXXXX"
 
 //Nama Aplikasi Antares
 #define projectName "Chart-uv"
