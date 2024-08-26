@@ -1,6 +1,6 @@
-#define BLYNK_TEMPLATE_ID "TMPL6jSLJ4pJJ"
-#define BLYNK_TEMPLATE_NAME "SmartHome IOT kit"
-#define BLYNK_AUTH_TOKEN "dpu0af30mHSlm4BtRsmALo7m3airWPpc"
+#define BLYNK_TEMPLATE_ID "TMPL6f-uO4A5a"
+#define BLYNK_TEMPLATE_NAME "Smart Home"
+#define BLYNK_AUTH_TOKEN "bxJboFYu5Mlib4u502whr2l0saspA_CA"
 #define BLYNK_PRINT Serial
 #include <WiFi.h>
 #include <WiFiClient.h>
@@ -11,14 +11,14 @@
 
 char auth[] = BLYNK_AUTH_TOKEN;
 char ssid[] = "hoshinova";
-char pass[] = "MoonaBiniGwe";
-#define DHTPIN 5
+char pass[] = "Ichizora";
+#define DHTPIN 26
 #define DHTTYPE DHT11
 #define MQ2PIN 32
-#define LEDPIN 26
+#define LEDPIN 25
 #define BUZZERPIN 18
 #define SERVOPIN 19
-const int IR_SENSOR_PIN = 33;
+const int IR_SENSOR_PIN = 5;
 DHT dht(DHTPIN, DHTTYPE);
 Servo servo;
 
@@ -35,12 +35,15 @@ void setup() {
   pinMode(BUZZERPIN, OUTPUT);
 
   timer.setInterval(2000L, sendSensorData);
+  Serial.println("----------------------------------------------------------------------------------------------");
+  Serial.println("|  Temperature (°C)  |  Humidity (%)  |  IR Sensor  |  Gas Value  |  LED  |  Servo Position  |");
+  Serial.println("----------------------------------------------------------------------------------------------");
 }
 
 void sendSensorData() {
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
-  int sensorValue = analogRead(IR_SENSOR_PIN);
+  int irSensorValue = digitalRead(IR_SENSOR_PIN);
   int gasValue = analogRead(MQ2PIN);
   int ledState = digitalRead(LEDPIN);
   int servoPosition = servo.read();
@@ -55,43 +58,38 @@ void sendSensorData() {
   Blynk.virtualWrite(V2, humidity);
   Blynk.virtualWrite(V3, gasValue);
 
-  if (gasValue > 3500) { // Adjust threshold as needed
+  // Gas detection logic
+  if (gasValue > 2500) { // Adjust threshold as needed
     digitalWrite(BUZZERPIN, HIGH);
     Blynk.logEvent("gas_bocor", "ADA KEBOCORAN GAS!!!!");
     delay(1000); // Increase delay for better noticeability
     digitalWrite(BUZZERPIN, LOW);
-  } else {
-    digitalWrite(BUZZERPIN, LOW);
   }
 
-  if (sensorValue < 130) {
+  // Fire detection logic using IR sensor
+  if (irSensorValue == LOW) { // Assuming LOW means fire detected
     Serial.println("Ada API!!!!");
     digitalWrite(BUZZERPIN, HIGH);
-    Blynk.logEvent("ada_api_terdeteksi", "ADA KEBAKARAN DIRUMAH!!!!");
+    Blynk.logEvent("kebakaran", "ADA KEBAKARAN DIRUMAH!!!!");
     delay(1000); // Increase delay for better noticeability
-    digitalWrite(BUZZERPIN, LOW);
-  } else {
     digitalWrite(BUZZERPIN, LOW);
   }
 
   // Display data on Serial monitor
-    Serial.println("-------------------------------------------------------");
-  Serial.println("|  Temperature (°C)  |  Humidity (%)  |  IR Sensor  |  Gas Value  |  LED  |  Servo Position  |");
-  Serial.println("-------------------------------------------------------");
   Serial.print("|        ");
   Serial.print(temperature);
-  Serial.print("        |       ");
+  Serial.print("       |     ");
   Serial.print(humidity);
-  Serial.print("        |       ");
-  Serial.print(sensorValue);
-  Serial.print("        |     ");
+  Serial.print("      |       ");
+  Serial.print(irSensorValue);
+  Serial.print("     |     ");
   Serial.print(gasValue);
-  Serial.print("     |   ");
+  Serial.print("     |  ");
   Serial.print(ledState == HIGH ? "ON " : "OFF");
-  Serial.print("  |       ");
+  Serial.print("  |      ");
   Serial.print(servoPosition);
-  Serial.println("        |");
-  Serial.println("-------------------------------------------------------");
+  Serial.println("       |");
+  Serial.println("----------------------------------------------------------------------------------------------");
 }
 
 BLYNK_WRITE(V4) {
@@ -111,4 +109,4 @@ BLYNK_WRITE(V5) {
 void loop() {
   Blynk.run();
   timer.run();
-} 
+}
