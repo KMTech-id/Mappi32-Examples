@@ -1,6 +1,6 @@
-#define BLYNK_TEMPLATE_ID "TMPL6yXXjuxmh"
-#define BLYNK_TEMPLATE_NAME "Smart Garden"
-#define BLYNK_AUTH_TOKEN "6PJNrReEob6xgywBH0Zkeu6ttcrJ67-j"
+#define BLYNK_TEMPLATE_ID "*"
+#define BLYNK_TEMPLATE_NAME "*"
+#define BLYNK_AUTH_TOKEN "*"
 #define BLYNK_PRINT Serial
 
 #include <WiFi.h>
@@ -10,11 +10,11 @@
 #include <LiquidCrystal_I2C.h>
 
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "hoshinova";
-char pass[] = "Ichizora";
+char ssid[] = "*";
+char pass[] = "*";
 
-int sensor_pin = 12; // Sensor Pin
-int relay_pin = 13;   // Relay Pin
+const int sensor_pin = 33; // Sensor Pin
+const int relay_pin = 13;   // Relay Pin
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Set the LCD address to 0x27 for a 16 chars and 2 line display
 BlynkTimer timer;
