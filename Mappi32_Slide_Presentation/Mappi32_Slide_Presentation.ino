@@ -1,7 +1,5 @@
-// KMTek
-// Karya Merapi Teknologi
-// Automated Presentation Slides using Mappi32
-// @diazkibidi
+  /* Automated Presentation Slides using Mappi32 */
+      // @diazkibidi // Raffi Diaz Pratama //  
 
 #include <Wire.h>
 #include "paj7620.h"
