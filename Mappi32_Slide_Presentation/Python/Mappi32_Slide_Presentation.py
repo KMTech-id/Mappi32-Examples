@@ -1,23 +1,24 @@
+# KMTek
+# Karya Merapi Teknologi
+# Automatic Scrolling with Gesture Sensor
+# @diazkibidi
+
 import serial
 import time
 import pyautogui
 
-# Replace 'COM3' with the serial port you are using
+# Sesuaikan port dan baud dengan milik anda
 ser = serial.Serial('COM3', 9600, timeout=1)
-time.sleep(2)  # Wait for the serial connection to stabilize
+time.sleep(2) 
 
-# Time delay between each key press (in seconds)
+# Delay setiap pembacaan
 KEY_PRESS_DELAY = 0.5
 
 def press_key(perintah):
     if perintah == "Right":
-        pyautogui.press('right')  # Press the right arrow key
+        pyautogui.press('right')  # Gerakan ke kanan, slide ke kanan
     elif perintah == "Left":
-        pyautogui.press('left')  # Press the left arrow key
-    elif perintah == "Forward":
-        pyautogui.press('up')  # Press the up arrow key (example action)
-    elif perintah == "Backward":
-        pyautogui.press('down')  # Press the down arrow key (example action)
+        pyautogui.press('left')  # Gerakan ke kanan, slide ke kiri
 
 try:
     while True:
