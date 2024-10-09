@@ -1,3 +1,8 @@
+// KMTek
+// Karya Merapi Teknologi
+// Accessing Analog Sound Sensor using Mappi32
+// @diazkibidi
+
 const int soundSensorPin = A0; // Pin analog untuk sensor suara
 int soundValue = 0; // Variabel untuk menyimpan nilai pembacaan sensor suara
 
