@@ -1,3 +1,8 @@
+// KMTek
+// Karya Merapi Teknologi
+// Burglar Detector Using Mappi32
+// @diazkibidi
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
