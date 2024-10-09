@@ -1,7 +1,5 @@
-// KMTek
-// Karya Merapi Teknologi
-// Smart Fan Based on Temperature using DHT11 Sensor
-// @diazkibidi
+/* Smart Fan Based on Temperature using DHT11 Sensor */
+      // @diazkibidi // Raffi Diaz Pratama //  
 
 #include <DHT.h>
 
