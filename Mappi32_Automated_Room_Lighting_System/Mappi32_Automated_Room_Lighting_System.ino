@@ -1,6 +1,6 @@
 // KMTek
 // Karya Merapi Teknologi
-// Automatic Scrolling with Gesture Sensor
+// Automated Room Lighting System with Mappi32
 // @diazkibidi
 
 const int trigPin = 16;  // Pin Trig sensor ultrasonik
