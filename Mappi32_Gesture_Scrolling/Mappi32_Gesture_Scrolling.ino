@@ -1,7 +1,5 @@
-// KMTek
-// Karya Merapi Teknologi
-// Automatic Scrolling with Gesture Sensor
-// @diazkibidi
+    /* Automatic Scrolling with Gesture Sensor */
+      // @diazkibidi // Raffi Diaz Pratama //  
 
 #include <Wire.h>
 #include "paj7620.h"
