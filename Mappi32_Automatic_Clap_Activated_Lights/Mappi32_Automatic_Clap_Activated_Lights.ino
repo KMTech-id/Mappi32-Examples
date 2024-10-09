@@ -1,7 +1,5 @@
-// KMTek
-// Karya Merapi Teknologi
-// Automatic Clap Activated Lights
-// @diazkibidi
+       /* Automatic Clap Activated Lights */
+      // @diazkibidi // Raffi Diaz Pratama //  
 
 int sensor = 32;  // Ubah nilai pin sensor sesuai dengan koneksi hardware
 int led1 = 18;    // Ubah nilai pin LED sesuai dengan koneksi hardware
