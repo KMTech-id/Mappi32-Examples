@@ -1,4 +1,8 @@
-// Definisikan pin yang digunakan
+// KMTek
+// Karya Merapi Teknologi
+// Automatic Scrolling with Gesture Sensor
+// @diazkibidi
+
 const int trigPin = 16;  // Pin Trig sensor ultrasonik
 const int echoPin = 17; // Pin Echo sensor ultrasonik
 const int lampuPin = 18; // Pin lampu LED
