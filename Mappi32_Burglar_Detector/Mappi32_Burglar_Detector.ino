@@ -1,7 +1,5 @@
-// KMTek
-// Karya Merapi Teknologi
-// Burglar Detector Using Mappi32
-// @diazkibidi
+       /* Burglar Detector Using Mappi32 */
+      // @diazkibidi // Raffi Diaz Pratama //  
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
