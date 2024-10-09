@@ -1,7 +1,5 @@
-// KMTek
-// Karya Merapi Teknologi
-// Automated Room Lighting System with Mappi32
-// @diazkibidi
+  /* Automated Room Lighting System with Mappi32 */
+      // @diazkibidi // Raffi Diaz Pratama //  
 
 const int trigPin = 16;  // Pin Trig sensor ultrasonik
 const int echoPin = 17; // Pin Echo sensor ultrasonik
