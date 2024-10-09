@@ -1,3 +1,8 @@
+// KMTek
+// Karya Merapi Teknologi
+// Smart Fan Based on Temperature using DHT11 Sensor
+// @diazkibidi
+
 #include <DHT.h>
 
 #define DHTPIN 19      // Pin where the DHT11 is connected
