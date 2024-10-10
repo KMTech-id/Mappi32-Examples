@@ -1,5 +1,5 @@
 // Getting Started with Bluetooth on Mappi32 //
-// @yugoyokaii . Video KMTek Indonesia //
+// @yugoyokaii . On Youtube KMTek Indonesia //
 
 #include "BluetoothSerial.h"
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
