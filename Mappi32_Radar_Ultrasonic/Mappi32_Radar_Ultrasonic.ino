@@ -1,5 +1,5 @@
 // Building a Simple Ultrasonic Sensor Radar //
-// @yugoyokaii . Video KMTek Indonesia //
+// @yugoyokaii . On Youtube KMTek Indonesia //
 
 #include<Servo.h>
 
@@ -55,9 +55,5 @@ void loop()
   Serial.print(".");
   
  }
-
- 
-  
-
 }
 
