@@ -1,5 +1,5 @@
 // Building a Simple Ultrasonic Sensor Radar //
-// @yugoyokaii . Video KMTek Indonesia //
+// @yugoyokaii . On Youtube KMTek Indonesia //
 
 import processing.serial.*; // imports library for serial communication
 import java.awt.event.KeyEvent; // imports library for reading the data from the serial port
