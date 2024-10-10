@@ -1,5 +1,5 @@
 // Bluetooth LED Control with Mappi32 //
-// @yugoyokaii . Video KMTek Indonesia //
+// @yugoyokaii . On Youtube KMTek Indonesia //
 
 #include "BluetoothSerial.h"
 
