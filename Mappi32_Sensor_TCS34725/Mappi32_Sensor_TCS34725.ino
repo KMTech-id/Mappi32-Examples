@@ -1,3 +1,6 @@
+// Building Your Own Color Detector using RGB Sensor TCS34725 & Mappi32 //
+// @yugoyokaii . On Youtube KMTek Indonesia //
+
 #include <Wire.h> // Library untuk komunikasi I2C
 #include <Adafruit_Sensor.h> // Library untuk sensor
 #include "Adafruit_TCS34725.h" // Library untuk sensor warna TCS34725
