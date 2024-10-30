@@ -8,7 +8,7 @@ BluetoothSerial SerialBT;  // Membuat instance dari kelas BluetoothSerial
 int relay1 = 17;  // Menentukan pin untuk relay1
 
 void setup() {
-  SerialBT.begin("Something");  // Menginisialisasi Bluetooth dengan nama "Something"
+  SerialBT.begin("**********");  // Menginisialisasi nama Bluetooth kalian
   Serial.begin(115200);  // Menginisialisasi komunikasi serial dengan baud rate 115200
 
   pinMode(relay1, OUTPUT);  // Mengatur pin relay1 sebagai output
