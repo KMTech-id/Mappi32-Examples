@@ -1,4 +1,4 @@
-// How to Make an Automatic Water Dispenser using Mappi32 //
+// How to Make an Smart Door Lock using Mappi32 //
 // @yugoyokaii . On Youtube KMTek Indonesia //
 
 #define BLYNK_TEMPLATE_ID "********************************"
