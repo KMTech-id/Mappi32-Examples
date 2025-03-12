@@ -1,0 +1,89 @@
+#define BLYNK_TEMPLATE_ID "TMPL6ekQRq2kN"
+#define BLYNK_TEMPLATE_NAME "Rain Alert"
+#define BLYNK_AUTH_TOKEN "Obz8-bZtb-ssd8W4ww3Yqxq0RNJ_FhGY"
+
+#define BLYNK_PRINT Serial
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <BlynkSimpleEsp32.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+char auth[] = "Obz8-bZtb-ssd8W4ww3Yqxq0RNJ_FhGY";
+char ssid[] = "matahari";
+char pass[] = "mentarirhaa";
+
+// Pin sensor hujan
+#define SENSOR_HUJAN 4
+
+// Konfigurasi OLED
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+BlynkTimer timer;
+int hold = 0;
+
+// Fungsi menampilkan status di OLED
+void displayStatus(String status) {
+    display.clearDisplay();
+    display.setTextSize(2);
+    display.setTextColor(WHITE);
+    display.setCursor(10, 20);
+    display.println(status);
+    display.display();
+}
+
+// Fungsi membaca sensor hujan
+void hujanNotify() {
+    int read_hujan = digitalRead(SENSOR_HUJAN);
+
+    Serial.print("Status Sensor: ");
+    Serial.println(read_hujan);
+
+    if (read_hujan == 0 && hold == 0) {
+        Serial.println("HUJAN! Kirim notifikasi ke Blynk...");
+        Blynk.logEvent("hujan", "Awas Hujan !!!");
+        Blynk.virtualWrite(V0, "HUJAN!");
+        displayStatus("HUJAN!");
+        hold = 1;
+    } 
+    else if (read_hujan == 1 && hold == 1) {
+        Serial.println("CERAH! Kirim notifikasi ke Blynk...");
+        Blynk.logEvent("cerah", "Cuaca Cerah");
+        Blynk.virtualWrite(V0, "CERAH");
+        displayStatus("CERAH");
+        hold = 0;
+    }
+}
+
+void setup() {
+    Serial.begin(9600);
+    
+    pinMode(SENSOR_HUJAN, INPUT_PULLUP); // Tambahkan pull-up agar lebih stabil
+
+    // Inisialisasi OLED
+    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+        Serial.println("OLED tidak ditemukan!");
+        while (1);
+    }
+    
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    display.setCursor(10, 10);
+    display.println("Menghubungkan...");
+    display.display();
+
+    // Koneksi ke Blynk
+    Blynk.begin(auth, ssid, pass, "blynk.cloud", 80);
+
+    // Timer untuk membaca sensor setiap 2.5 detik
+    timer.setInterval(2500L, hujanNotify);
+}
+
+void loop() {
+    Blynk.run();
+    timer.run();
+}
