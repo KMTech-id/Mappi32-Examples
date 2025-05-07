@@ -1,0 +1,78 @@
+// Library yang dibutuhkan
+#include <ESP32_Servo.h>  // Library untuk mengontrol servo pada ESP32
+
+// Pin untuk sensor ultrasonik
+#define TRIG_PIN 26   // Pin Trigger diubah ke GPIO 26
+#define ECHO_PIN 25   // Pin Echo diubah ke GPIO 25
+
+// Pin untuk sensor soil moisture
+#define SOIL_MOISTURE_PIN 32
+
+// Pin untuk servo motor
+#define SERVO_PIN 19
+
+// Inisialisasi objek servo
+Servo myServo;
+
+// Variabel untuk menghitung jarak
+long duration;
+int distance;
+
+// Ambang batas kelembaban untuk mendeteksi sampah basah atau kering
+const int WET_THRESHOLD = 3500;   // Batas maksimum sampah basah
+const int DRY_THRESHOLD = 4000;   // Batas minimum sampah kering
+
+void setup() {
+  Serial.begin(115200);  // Inisialisasi serial monitor
+  
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  
+  pinMode(SOIL_MOISTURE_PIN, INPUT);
+  
+  myServo.attach(SERVO_PIN);
+  myServo.write(90);  // Posisi awal (netral, menunggu deteksi sampah)
+  
+  delay(1000);
+}
+
+void loop() {
+  // Menghitung jarak menggunakan sensor ultrasonik
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+  
+  duration = pulseIn(ECHO_PIN, HIGH);
+  distance = duration * 0.0344 / 2; // Menghitung jarak dalam cm
+  
+  Serial.print("Jarak: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  if (distance < 10) {  // Jika ada sampah yang terdeteksi dalam jarak 10 cm
+    int soilMoistureValue = analogRead(SOIL_MOISTURE_PIN);  // Membaca kelembaban
+
+    Serial.print("Kelembaban: ");
+    Serial.println(soilMoistureValue);
+    
+    if (soilMoistureValue <= WET_THRESHOLD) {
+      Serial.println("Sampah Basah");
+      myServo.write(0); // Servo ke 0° untuk sampah basah
+    } 
+    else if (soilMoistureValue >= DRY_THRESHOLD) {
+      Serial.println("Sampah Kering");
+      myServo.write(180); // Servo ke 180° untuk sampah kering
+    } 
+    else {
+      Serial.println("Tidak dapat dikategorikan");
+      myServo.write(90); // Servo ke 90° untuk posisi netral
+    }
+  } else {
+    Serial.println("Tidak ada sampah terdeteksi");
+    myServo.write(90); // Tidak ada sampah, servo di posisi netral
+  }
+
+  delay(1000);
+}
