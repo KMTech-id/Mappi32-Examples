@@ -1,0 +1,86 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Inisialisasi LCD (gunakan 0x3F jika 0x27 tidak berfungsi)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Definisi pin
+#define SENSOR_PIN 25   // Pin sensor infrared
+#define BUZZER_PIN 26   // Pin buzzer
+
+// Variabel penghitung
+int jumlahBarang = 0;
+int totalBarang = 0;
+bool barangTerdeteksi = false;
+
+void setup() {
+    Serial.begin(115200);
+    pinMode(SENSOR_PIN, INPUT);
+    pinMode(BUZZER_PIN, OUTPUT);
+    
+    lcd.init();
+    lcd.backlight();
+    
+    lcd.setCursor(0, 0);
+    lcd.print("Barang: 0");
+    lcd.setCursor(0, 1);
+    lcd.print("Total: 0");
+
+    Serial.println("Sensor Barang Dijalankan...");
+}
+
+void loop() {
+    int sensorState = digitalRead(SENSOR_PIN);
+
+    if (sensorState == LOW && !barangTerdeteksi) {
+        jumlahBarang++;
+        barangTerdeteksi = true;
+
+        // Update tampilan jumlah
+        lcd.setCursor(8, 0);
+        lcd.print(jumlahBarang);
+        lcd.print("  ");
+
+        Serial.print("Jumlah barang saat ini: ");
+        Serial.println(jumlahBarang);
+
+        // Jika jumlahBarang mencapai 5
+        if (jumlahBarang == 5) {
+            // Tampilkan di LCD dulu
+            lcd.setCursor(8, 0);
+            lcd.print("5  ");
+
+            // Bunyikan buzzer
+            digitalWrite(BUZZER_PIN, HIGH);
+            delay(500);
+            digitalWrite(BUZZER_PIN, LOW);
+
+            // Tunda sebentar untuk menampilkan angka 5 sebelum reset
+            delay(1000);
+
+            // Tambah total
+            totalBarang += 5;
+
+            // Reset jumlah
+            jumlahBarang = 0;
+
+            // Update LCD
+            lcd.setCursor(8, 0);
+            lcd.print("0  ");
+            lcd.setCursor(7, 1);
+            lcd.print(totalBarang);
+            lcd.print("  ");
+
+            // Tampilkan ke Serial Monitor
+            Serial.print("Total barang bertambah menjadi: ");
+            Serial.println(totalBarang);
+        }
+    }
+
+    // Reset status deteksi saat barang sudah lewat
+    if (sensorState == HIGH) {
+        barangTerdeteksi = false;
+    }
+
+    delay(200);
+}
